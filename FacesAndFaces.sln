@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Faces.Web", "Faces.Web", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faces.WebMvc", "Faces.Web\Faces.WebMvc\Faces.WebMvc.csproj", "{7EDD3FF1-350B-44C4-ACA9-F85BCCEECD98}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{2FAC5C85-9952-40B6-AE5A-396A073F3B8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdersApi", "Ordering\OrdersApi\OrdersApi.csproj", "{8D1089C1-53F0-4C57-984D-04088B0B8A84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{7EDD3FF1-350B-44C4-ACA9-F85BCCEECD98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EDD3FF1-350B-44C4-ACA9-F85BCCEECD98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EDD3FF1-350B-44C4-ACA9-F85BCCEECD98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D1089C1-53F0-4C57-984D-04088B0B8A84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D1089C1-53F0-4C57-984D-04088B0B8A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D1089C1-53F0-4C57-984D-04088B0B8A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D1089C1-53F0-4C57-984D-04088B0B8A84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +56,7 @@ Global
 		{AC07DEFB-0596-48B6-BBD6-F84C625D5D70} = {F6494541-C6CF-41C6-8474-4DD188170E68}
 		{446EDB42-5A26-4B75-94B8-84529F8BE226} = {96BCF333-84E5-46D7-8E4D-5F4E9F10B644}
 		{7EDD3FF1-350B-44C4-ACA9-F85BCCEECD98} = {34AFB2D6-2E2A-4909-9192-59BA630C38A8}
+		{8D1089C1-53F0-4C57-984D-04088B0B8A84} = {2FAC5C85-9952-40B6-AE5A-396A073F3B8E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2ACD90FA-75DD-47C2-AEF2-625C109E9DDF}

@@ -47,7 +47,7 @@ namespace Faces.WebMvc.Controllers
             }
 
             orderViewModel.ImageData = memory.ToArray();
-            orderViewModel.ImageUrl = orderViewModel.File.FileName;
+            orderViewModel.PictureUrl = orderViewModel.File.FileName;
             orderViewModel.OrderId = Guid.NewGuid();
             var sendToUri = new Uri($"{ RabbitMqMassTransitConstants.RabbitMqUri }" +
                 $"/{RabbitMqMassTransitConstants.RegisterOrderCommandQueue }");
@@ -60,7 +60,7 @@ namespace Faces.WebMvc.Controllers
                     orderViewModel.OrderId,
                     orderViewModel.UserEmail,
                     orderViewModel.ImageData,
-                    orderViewModel.ImageUrl
+                    orderViewModel.PictureUrl
 
                 });
 

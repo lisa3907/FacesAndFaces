@@ -15,8 +15,8 @@ namespace Faces.WebMvc.ViewModels
         public string UserEmail { get; set; }
         [Display(Name="Image File")]
         public IFormFile File { get; set; }
-        [Display(Name="Image Url")]
-        public string ImageUrl { get; set; }
+        [Display(Name="Picture Url")]
+        public string PictureUrl { get; set; }
         [Display(Name="Order Status")]
         public string OrderStatus { get; set; }
         public byte[] ImageData { get; set; }

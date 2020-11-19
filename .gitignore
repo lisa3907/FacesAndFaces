@@ -339,3 +339,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Ordering/OrdersApi/Controllers/WeatherForecastController.cs
+/Ordering/OrdersApi/Persistence/Migrations
