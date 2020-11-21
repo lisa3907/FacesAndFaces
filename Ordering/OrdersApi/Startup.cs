@@ -45,6 +45,7 @@ namespace OrdersApi
                 c => 
                 {
                     c.AddConsumer<RegisterOrderCommandConsumer>();
+                    c.AddConsumer<OrderDispatchedEventConsumer>();
                     //c.UsingRabbitMq((context, cfg) =>
                     //{
                     //    cfg.ConfigureEndpoints(context);
@@ -61,15 +62,35 @@ namespace OrdersApi
                         e.PrefetchCount = 16;
                         // api will try 2 times with the interval of 10 secs before giving up
                         e.UseMessageRetry(x => x.Interval(2, TimeSpan.FromSeconds(10)));
+
                         e.Consumer<RegisterOrderCommandConsumer>(provider);
+                        
+                    });
+                    cfg.ReceiveEndpoint(RabbitMqMassTransitConstants.OrderDispatchedServiceQueue,
+                    e =>
+                    {
+                        e.PrefetchCount = 16;
+                        e.UseMessageRetry(x => x.Interval(2, TimeSpan.FromSeconds(10)));
+
+                        e.Consumer<OrderDispatchedEventConsumer>(provider);
                         
                     });
 
                     //cfg.ConfigureEndpoints(provider);
                 }));
-
-
             services.AddSingleton<IHostedService, BusService>();
+
+            // allows OrdersApi endpoints be called by other servers
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowCredentials());
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -87,6 +108,7 @@ namespace OrdersApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OrdersApi v1"));
             }
 
+            app.UseCors("CorsPolicy");
             app.UseRouting();
 
             app.UseAuthorization();

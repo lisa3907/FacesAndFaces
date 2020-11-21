@@ -341,3 +341,5 @@ ASALocalRun/
 healthchecksdb
 /Ordering/OrdersApi/Controllers/WeatherForecastController.cs
 /Ordering/OrdersApi/Persistence/Migrations
+/CustomerNotification/NotificationService/appsettings.json
+/CustomerNotification/NotificationService/appsettings.Production.json

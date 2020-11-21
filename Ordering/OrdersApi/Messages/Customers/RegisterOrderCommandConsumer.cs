@@ -24,7 +24,7 @@ namespace OrdersApi.Messages.Customers
         {
             var result = context.Message;
 
-            if(result.OrderId != null && result.PictureUrl != null &&
+            if(result?.OrderId != null && result.PictureUrl != null &&
                 result.UserEmail != null && result.ImageData != null)
             {
                 SaveOrder(result);
@@ -40,7 +40,7 @@ namespace OrdersApi.Messages.Customers
         private void SaveOrderDetails(Guid orderId, List<byte[]> faces)
         {
             var order = _repository.GetOrderAsync(orderId).Result;
-            if(order == null)
+            if(order != null)
             {
                 order.Status = Status.Processed;
                 foreach (var face in faces)
@@ -56,7 +56,7 @@ namespace OrdersApi.Messages.Customers
                 _repository.UpdateOrder(order);
             }
         }
-
+        // this method calls FacesApi
         private async Task<Tuple<List<byte[]>, Guid>> GetFacesFromFaceApiAsync(HttpClient client, byte[] imageData, Guid orderId)
         {
             // Provides HTTP content based on a byte array. so diffrent than normal array

@@ -1,3 +1,4 @@
+using Faces.WebMvc.RestClients;
 using Faces.WebMvc.Services;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +33,12 @@ namespace Faces.WebMvc
                     services.AddSingleton(provider => provider.GetRequiredService<IBusControl>());
                     services.AddSingleton<IHostedService, BusService>();
                 }));
+
+
+            // registering with dependeting injection and add http clinet links to it 
+            // basically killing 2 birds with one stone 
+            // in code it looks IOrderManagementApi _restClient;
+            services.AddHttpClient<IOrderManagementApi, OrderManagementApi>();
             services.AddControllersWithViews();
         }
 

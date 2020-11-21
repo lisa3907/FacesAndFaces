@@ -24,7 +24,7 @@ namespace FacesApi.Controllers
         //    }
         //}
   
-        [HttpPost("{orderId}")]//as a part of an url
+        [HttpPost("{orderId}")]//as a part of an url ...blabla/orderId (query string is diffrent)
         public async Task<Tuple<List<byte[]>, Guid>> ReadFaces(Guid orderId) 
         {
             using(var ms = new MemoryStream(2048))
