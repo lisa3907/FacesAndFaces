@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: cart
+  name: cart
+spec:
+  selector:
+    matchLabels:
+      io.kompose.service: cart
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: cart
+    spec:
+      containers:
+      - env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: IdentityUrl
+          #value: http://192.168.1.4:5000
+          #value: http://192.168.64.11:5000
+          value: http://tokenserver:5000
+        image: tkousek/cart
+        imagePullPolicy: IfNotPresent
+        name: cartapi
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+status: {}

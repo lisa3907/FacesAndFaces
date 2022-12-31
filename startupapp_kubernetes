@@ -1,0 +1,47 @@
+1. Install docker for desktop if you have not already installed it https://www.docker.com/products/docker-desktop
+Enable kubernetes on it
+Takes a while to loadup
+
+==> first time ONLY install the kubernetes dashboard
+https://github.com/kubernetes/dashboard
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+
+2. run
+kubectl proxy
+http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+
+
+To get bearer tokenservice
+https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
+
+You will see a login, choose "Token" and the run this in a powershell window (or git bash prompt)
+and copy the whole token string that comes out:
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
+
+==>
+
+if "kubectl get nodes" comes up, you're good to go
+go to your root directory of your app (the one with "./src" off it)
+then go into "kompose"
+may want to shutdown IIS since you're running on port 80
+3. cd into kompose
+
+4. Run "cleanup.sh" if you have any pods running (ie, "kubectl get pods" returns data)
+
+5. Open up startup.sh and follow the instructions of the comments.
+
+After starting up all of the pods, you should see something like
+
+> kubectl get pods (or you can look at the "Pods" on your dashboard app)
+
+  NAME                           READY     STATUS    RESTARTS   AGE
+  basketdata-79ddb47cf6-z8x8x    1/1       Running   1          1h
+  cart-7755fdc68c-lvj7h          1/1       Running   0          38m
+  catalog-59b896cc8f-gslf4       1/1       Running   0          38m
+  mssqlserver-5c656495fc-lkvsd   1/1       Running   1          1h
+  order-cf75646bf-p8fg9          1/1       Running   0          34m
+  rabbitmq-59747dcc98-kll87      1/1       Running   1          1h
+  tokenserver-5f74ffbf6b-l2lt5   1/1       Running   1          43m
+  webmvc-8c877c557-k5pl8         1/1       Running   0          45s
+
+  Startup with your port (usually for me it's http://192.168.1.4/  depending on whetehr I'm on the Mac or Windows)

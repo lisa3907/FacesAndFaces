@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: webmvc
+  name: webmvc
+spec:
+  selector:
+    matchLabels:
+      io.kompose.service: webmvc
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: webmvc
+    spec:
+      containers:
+      - env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: CallbackUrl
+          value: http://localhost
+        - name: CartUrl
+          value: http://cart:5500          
+        - name: CatalogUrl
+          value: http://catalog
+        - name: IdentityUrl
+          # On the mac with minikube          
+          value: http://192.168.64.11:32284
+          #value: http://192.168.1.4:5000          
+        - name: OrderUrl
+          value: http://order:5600
+        image: tkousek/mvc
+        imagePullPolicy: IfNotPresent
+        name: webshop
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+status: {}

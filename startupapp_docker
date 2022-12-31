@@ -1,0 +1,58 @@
+IMPORTANT, when building please tag images or this will not work
+docker build --tag tkousek/cart .
+1. Do a git bash prompt
+2. docker stop $(docker ps -a -q)
+3. docker rm $(docker ps -a -q)
+4. docker container ps -a   should return no rows
+cd to your home directory.  The one with "./src" in it 
+d-----        8/20/2019   7:56 AM                .vs
+d-----        8/20/2019  11:03 PM                .vscode
+d-----        8/20/2019   7:56 AM                kompose
+d-----        8/20/2019   7:56 AM                src
+
+(Note, in the cartapi project, the connection string changed to basketdata to get it to work both in kubernetes and docker
+do a docker build .
+
+5. docker-compose up rabbitmq mssqlserver basketdata 
+   You need to wait a while for sql server to come up
+   basketdata starts up redis
+
+   C:\UdemyMacMicroserviceKubernetes\k8micro>docker container ps
+CONTAINER ID        IMAGE                                 COMMAND                  CREATED              STATUS              PORTS                                                                                        NAMES
+71a178f6a59b        microsoft/mssql-server-linux:latest   "/opt/mssql/bin/sqls…"   About a minute ago   Up About a minute   0.0.0.0:1443->1433/tcp                                                                       mssqldata
+bc133cc9706c        rabbitmq:3-management                 "docker-entrypoint.s…"   About a minute ago   Up About a minute   4369/tcp, 0.0.0.0:5671-5672->5671-5672/tcp, 15671/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp   rabbitmq
+d5706b550d92        redis                                 "docker-entrypoint.s…"   About a minute ago   Up About a minute   0.0.0.0:6377->6379/tcp
+
+6. docker-compose up tokenserver
+
+7. docker-compose up cart 
+
+8. docker-compose up catalog
+
+9. docker-compose up order
+
+1-. docker container ps should see this
+CONTAINER ID        IMAGE                                 COMMAND                  CREATED             STATUS              PORTS
+                                                                             NAMES
+00191b8920ad        tkousek/order                         "dotnet OrderApi.dll"    6 minutes ago       Up 5 minutes        0.0.0.0:5600->80/tcp                                                                         orderapi
+9fc1b0ec19eb        tkousek/cart                          "dotnet CartApi.dll"     11 minutes ago      Up About a minute   0.0.0.0:5500->80/tcp                                                                         cartapi
+e6ecd100874c        tkousek/catalog                       "dotnet ProductCatal…"   11 minutes ago      Up 11 minutes       0.0.0.0:5100->80/tcp                                                                         catalogapi
+a3d486a83f6f        tkousek/tokenservice                  "dotnet TokenService…"   11 minutes ago      Up 11 minutes       0.0.0.0:5000->80/tcp                                                                         tokenserviceapi
+71a178f6a59b        microsoft/mssql-server-linux:latest   "/opt/mssql/bin/sqls…"   16 minutes ago      Up 16 minutes       0.0.0.0:1443->1433/tcp                                                                       mssqldata
+bc133cc9706c        rabbitmq:3-management                 "docker-entrypoint.s…"   16 minutes ago      Up 16 minutes       4369/tcp, 0.0.0.0:5671-5672->5671-5672/tcp, 15671/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp   rabbitmq
+d5706b550d92        redis                                 "docker-entrypoint.s…"   16 minutes ago      Up 16 minutes       0.0.0.0:6377->6379/tcp                    
+
+Once in a while you have to restart up cartapi
+11  docker-compose webmvc
+
+12. If all goes well
+localhost:5200
+
+I note sometimes I had to restart catalog due to timing issues.
+you can do a docker logs e6ecd100874c
+docker-compose catalog
+
+The login redirect goes to
+http://10.0.75.1:5000/account/login?returnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Dmvc%26redirect_uri%3Dhttp%253A%252F%252Flocalhost%253A5200%252Fsignin-oidc%26response_type%3Dcode%2520id_token%26scope%3Dopenid%2520profile%2520offline_access%2520basket%2520order%26response_mode%3Dform_post%26nonce%3D637020747330270892.MmZmYWI5NjgtMzE2OS00MTg5LWJhNGMtZWI3N2RjMWQ1Mzg4MTI0NGRlZTQtY2ZmOS00Yzc3LTkzOTAtNWI5OTY1NmY3MGY5%26state%3DCfDJ8KJuweRFo_JMhJRU-lZuXxG5VU6dBPSto81qoTUUANt3GZoum2dX-YBEZQkv8Gdb5HfVneDN4wv6Cf4N9g-A8jatw3Oc59VeAR6Wm4qkQO0afAKPmj6iZeHyAubo5DOMXL6Zw4XBzcOFdhOdsXTbvFCYtRgRSgtxT0-9MywCvNol7BnstpD5gj2mfJhTmHrEQbUmXvdmdkqr5PIbERovZFCRy0S_4fbNhbUN2xCIv6YNROwupR6NFDK9S6nmtF84W-Ot6rbMyRg5fAabvuGDzxhHj25v9LsG7YSYPWH9xLdfauleGzk9Iet2moAYT7pjtgps7WxQIUDVivRUTrD5lRA%26x-client-SKU%3DID_NET%26x-client-ver%3D2.1.4.0
+
+

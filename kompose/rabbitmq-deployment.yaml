@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: rabbitmq
+  name: rabbitmq
+spec:
+  selector:
+    matchLabels:
+      io.kompose.service: rabbitmq
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: rabbitmq
+    spec:
+      containers:
+      - image: rabbitmq:3-management
+        name: rabbitmq
+        ports:
+        - containerPort: 15672
+        - containerPort: 5672
+        - containerPort: 5671
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/rabbitmq/mnesia
+          name: rabbitmq-claim0
+      hostname: myrabbitmq
+      restartPolicy: Always
+      volumes:
+      - name: rabbitmq-claim0
+        persistentVolumeClaim:
+          claimName: rabbitmq-claim0
+status: {}

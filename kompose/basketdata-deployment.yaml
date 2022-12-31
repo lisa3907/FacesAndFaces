@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: basketdata
+  name: basketdata
+spec:
+  selector:
+    matchLabels:
+      io.kompose.service: basketdata
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: basketdata
+    spec:
+      containers:
+      - image: redis
+        imagePullPolicy: IfNotPresent
+        name: basketdata
+        ports:
+        - containerPort: 6379
+        resources: {}
+      restartPolicy: Always
+status: {}
+
+

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: tokenserver
+  name: tokenserver
+spec:
+  selector:
+    matchLabels:
+      io.kompose.service: tokenserver
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: tokenserver
+    spec:
+      containers:
+      - env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: BasketApiClient
+          value: http://localhost:5500
+        - name: MvcClient
+          value: http://192.168.64.11:32252
+        - name: OrderApiClient
+          value: http://localhost:5600
+        image: tkousek/tserver
+        imagePullPolicy: IfNotPresent
+        name: tokenserviceapi
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: order
+  name: order
+spec:
+  selector:
+    matchLabels:
+      io.kompose.service: order
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: order
+    spec:
+      containers:
+      - env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: DATABASE
+          value: OrdersDb
+        - name: IdentityUrl
+          #value: http://192.168.1.6:5000
+          #value: http://192.168.64.11:30795
+          value: http://tokenserver:5000
+        - name: SA_PASSWORD
+          value: Password1
+        - name: SQLSERVER_HOST
+          value: mssqlserver
+        image: tkousek/order
+        imagePullPolicy: IfNotPresent
+        name: orderapi
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+status: {}

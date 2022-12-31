@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mssqlserver
+  name: mssqlserver
+spec:
+  selector:
+    matchLabels:
+      io.kompose.service: mssqlserver
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mssqlserver
+    spec:
+      containers:
+      - env:
+        - name: ACCEPT_EULA
+          value: '"Y"'
+        - name: SA_PASSWORD
+          value: Password1
+        image: microsoft/mssql-server-linux:latest        
+        name: mssqldata
+        ports:
+        - containerPort: 1433
+        resources: {}
+      restartPolicy: Always
+status: {}

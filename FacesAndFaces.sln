@@ -1,31 +1,69 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30711.63
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Faces", "Faces", "{F6494541-C6CF-41C6-8474-4DD188170E68}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacesApi", "Faces\FacesApi\FacesApi.csproj", "{EDB78D8C-60A2-41B4-AD52-3D0375031560}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacesApi", "src\Faces\FacesApi\FacesApi.csproj", "{EDB78D8C-60A2-41B4-AD52-3D0375031560}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaceApiTest", "Faces\FaceApiTest\FaceApiTest.csproj", "{AC07DEFB-0596-48B6-BBD6-F84C625D5D70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaceApiTest", "src\Faces\FaceApiTest\FaceApiTest.csproj", "{AC07DEFB-0596-48B6-BBD6-F84C625D5D70}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Faces.SharedLib", "Faces.SharedLib", "{96BCF333-84E5-46D7-8E4D-5F4E9F10B644}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messaging.InterfacesConstants", "Faces.SharedLib\Messaging.InterfacesConstants\Messaging.InterfacesConstants.csproj", "{446EDB42-5A26-4B75-94B8-84529F8BE226}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messaging.InterfacesConstants", "src\Faces.SharedLib\Messaging.InterfacesConstants\Messaging.InterfacesConstants.csproj", "{446EDB42-5A26-4B75-94B8-84529F8BE226}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Faces.Web", "Faces.Web", "{34AFB2D6-2E2A-4909-9192-59BA630C38A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Faces.WebMvc", "Faces.Web\Faces.WebMvc\Faces.WebMvc.csproj", "{7EDD3FF1-350B-44C4-ACA9-F85BCCEECD98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Faces.WebMvc", "src\Faces.Web\Faces.WebMvc\Faces.WebMvc.csproj", "{7EDD3FF1-350B-44C4-ACA9-F85BCCEECD98}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{2FAC5C85-9952-40B6-AE5A-396A073F3B8E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdersApi", "Ordering\OrdersApi\OrdersApi.csproj", "{8D1089C1-53F0-4C57-984D-04088B0B8A84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdersApi", "src\Ordering\OrdersApi\OrdersApi.csproj", "{8D1089C1-53F0-4C57-984D-04088B0B8A84}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CustomerNotification", "CustomerNotification", "{0BFBE567-FE50-4AFD-99E7-33EE5D8A4FC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "CustomerNotification\NotificationService\NotificationService.csproj", "{27857C58-31C3-4573-A11E-A1563788BE55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationService", "src\CustomerNotification\NotificationService\NotificationService.csproj", "{27857C58-31C3-4573-A11E-A1563788BE55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService", "CustomerNotification\EmailService\EmailService.csproj", "{49E4E6DC-C013-491A-903C-F29787C156E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService", "src\CustomerNotification\EmailService\EmailService.csproj", "{49E4E6DC-C013-491A-903C-F29787C156E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E4BB9270-0C50-431D-92B1-954F0297A857}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kompose", "kompose", "{07143A33-B2F1-4E9E-A03B-C10ACF72C7C8}"
+	ProjectSection(SolutionItems) = preProject
+		kompose\basketdata-deployment.yaml = kompose\basketdata-deployment.yaml
+		kompose\basketdata-service.yaml = kompose\basketdata-service.yaml
+		kompose\cart-deployment.yaml = kompose\cart-deployment.yaml
+		kompose\cart-service.yaml = kompose\cart-service.yaml
+		kompose\catalog-deployment.yaml = kompose\catalog-deployment.yaml
+		kompose\catalog-service.yaml = kompose\catalog-service.yaml
+		kompose\cleanup.sh = kompose\cleanup.sh
+		kompose\mssqlserver-deployment.yaml = kompose\mssqlserver-deployment.yaml
+		kompose\mssqlserver-service.yaml = kompose\mssqlserver-service.yaml
+		kompose\mssqlserver-servicepublic.yaml = kompose\mssqlserver-servicepublic.yaml
+		kompose\order-deployment.yaml = kompose\order-deployment.yaml
+		kompose\order-service.yaml = kompose\order-service.yaml
+		kompose\rabbitmq-claim0-persistentvolumeclaim.yaml = kompose\rabbitmq-claim0-persistentvolumeclaim.yaml
+		kompose\rabbitmq-deployment.yaml = kompose\rabbitmq-deployment.yaml
+		kompose\rabbitmq-service.yaml = kompose\rabbitmq-service.yaml
+		kompose\startup.sh = kompose\startup.sh
+		kompose\tokenserver-deployment.yaml = kompose\tokenserver-deployment.yaml
+		kompose\tokenserver-service.yaml = kompose\tokenserver-service.yaml
+		kompose\webmvc-deployment.yaml = kompose\webmvc-deployment.yaml
+		kompose\webmvc-service.yaml = kompose\webmvc-service.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{D2FE3C6C-527B-4944-BFEE-BAE1D7A91B92}"
+	ProjectSection(SolutionItems) = preProject
+		buildcart.sh = buildcart.sh
+		buildcatalog.sh = buildcatalog.sh
+		buildorders.sh = buildorders.sh
+		buildtokenserver.sh = buildtokenserver.sh
+		buildwebmvc.sh = buildwebmvc.sh
+		README.md = README.md
+		startupapp_docker = startupapp_docker
+		startupapp_kubernetes = startupapp_kubernetes
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,11 +104,16 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{F6494541-C6CF-41C6-8474-4DD188170E68} = {E4BB9270-0C50-431D-92B1-954F0297A857}
 		{EDB78D8C-60A2-41B4-AD52-3D0375031560} = {F6494541-C6CF-41C6-8474-4DD188170E68}
 		{AC07DEFB-0596-48B6-BBD6-F84C625D5D70} = {F6494541-C6CF-41C6-8474-4DD188170E68}
+		{96BCF333-84E5-46D7-8E4D-5F4E9F10B644} = {E4BB9270-0C50-431D-92B1-954F0297A857}
 		{446EDB42-5A26-4B75-94B8-84529F8BE226} = {96BCF333-84E5-46D7-8E4D-5F4E9F10B644}
+		{34AFB2D6-2E2A-4909-9192-59BA630C38A8} = {E4BB9270-0C50-431D-92B1-954F0297A857}
 		{7EDD3FF1-350B-44C4-ACA9-F85BCCEECD98} = {34AFB2D6-2E2A-4909-9192-59BA630C38A8}
+		{2FAC5C85-9952-40B6-AE5A-396A073F3B8E} = {E4BB9270-0C50-431D-92B1-954F0297A857}
 		{8D1089C1-53F0-4C57-984D-04088B0B8A84} = {2FAC5C85-9952-40B6-AE5A-396A073F3B8E}
+		{0BFBE567-FE50-4AFD-99E7-33EE5D8A4FC0} = {E4BB9270-0C50-431D-92B1-954F0297A857}
 		{27857C58-31C3-4573-A11E-A1563788BE55} = {0BFBE567-FE50-4AFD-99E7-33EE5D8A4FC0}
 		{49E4E6DC-C013-491A-903C-F29787C156E2} = {0BFBE567-FE50-4AFD-99E7-33EE5D8A4FC0}
 	EndGlobalSection
